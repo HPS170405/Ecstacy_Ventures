@@ -325,6 +325,13 @@ a {
   box-shadow: 0 4px 12px rgba(15,23,36,0.06);
 }
 
+/* Hide social-links on desktop */
+@media (min-width: 821px) {
+  .nav .social-links {
+    display: none !important;
+  }
+}
+
 /* Mobile responsiveness */
 @media (max-width: 820px) {
   .nav {
@@ -345,7 +352,6 @@ a {
   .nav-toggle { display: block; }
   .nav a { display: block; width: 100%; }
   .nav .btn { margin-top: 6px; width: 100%; }
-  /* Instagram & LinkedIn styling in mobile menu */
   .nav .social-links {
     margin-top: 12px;
     display: flex;
