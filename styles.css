@@ -72,6 +72,7 @@ a {
   color: var(--muted);
 }
 
+/* Navigation */
 .nav {
   display: flex;
   gap: 18px;
@@ -87,6 +88,15 @@ a {
 
 .nav a:hover {
   background: rgba(15,23,36,0.03);
+}
+
+/* Mobile nav toggle button */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 26px;
+  cursor: pointer;
 }
 
 .cta {
@@ -110,6 +120,7 @@ a {
   box-shadow: 0 10px 30px rgba(255,106,0,0.12);
 }
 
+/* Hero Section */
 .hero {
   display: grid;
   grid-template-columns: 1fr;
@@ -118,9 +129,7 @@ a {
   padding: 48px 0;
 }
 
-.hero-left {
-  padding: 6px 0;
-}
+.hero-left { padding: 6px 0; }
 
 .kicker {
   display: inline-block;
@@ -179,22 +188,11 @@ a {
   background: linear-gradient(180deg, rgba(255,106,0,0.12), rgba(255,106,0,0.03));
 }
 
-.section {
-  padding: 44px 0;
-}
+.section { padding: 44px 0; }
+.center { text-align: center; }
 
-.center {
-  text-align: center;
-}
-
-.grid {
-  display: grid;
-  gap: 18px;
-}
-
-.grid-3 {
-  grid-template-columns: 1fr;
-}
+.grid { display: grid; gap: 18px; }
+.grid-3 { grid-template-columns: 1fr; }
 
 .card {
   background: white;
@@ -218,11 +216,7 @@ a {
   box-shadow: 0 8px 30px rgba(2,6,23,0.04);
 }
 
-.features {
-  display: grid;
-  gap: 14px;
-}
-
+.features { display: grid; gap: 14px; }
 .feature {
   display: flex;
   gap: 12px;
@@ -233,16 +227,8 @@ a {
   box-shadow: var(--card-shadow);
 }
 
-.steps {
-  display: grid;
-  gap: 12px;
-}
-
-.step {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-}
+.steps { display: grid; gap: 12px; }
+.step { display: flex; gap: 12px; align-items: flex-start; }
 
 .step .num {
   background: var(--orange);
@@ -252,11 +238,7 @@ a {
   font-weight: 800;
 }
 
-.team {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
+.team { display: flex; gap: 12px; flex-wrap: wrap; }
 
 .role {
   background: white;
@@ -301,10 +283,7 @@ a {
   resize: vertical;
 }
 
-.small {
-  font-size: 13px;
-  color: var(--muted);
-}
+.small { font-size: 13px; color: var(--muted); }
 
 .center-cta {
   display: flex;
@@ -314,22 +293,15 @@ a {
   margin-top: 16px;
 }
 
+/* Desktop breakpoints */
 @media (min-width: 820px) {
-  .hero {
-    grid-template-columns: 1fr 520px;
-  }
-  .grid-3 {
-    grid-template-columns: repeat(3,1fr);
-  }
-  .nav a {
-    padding: 8px 12px;
-  }
-  .hero-title {
-    font-size: 56px;
-  }
+  .hero { grid-template-columns: 1fr 520px; }
+  .grid-3 { grid-template-columns: repeat(3,1fr); }
+  .nav a { padding: 8px 12px; }
+  .hero-title { font-size: 56px; }
 }
 
-/* --- FIXED POP-UP EFFECTS --- */
+/* Hover effects */
 .hero-bg,
 .card,
 .feature,
@@ -346,42 +318,47 @@ a {
   cursor: pointer;
 }
 
-.btn {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
+.btn { transition: transform 0.2s ease, box-shadow 0.2s ease; }
 .btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(15,23,36,0.06);
 }
 
-/* --- RESPONSIVE FOR MOBILE --- */
-@media (max-width: 768px) {
-  .hero {
-    grid-template-columns: 1fr !important;
-    text-align: center;
-  }
-  .hero-right {
-    order: -1;
-  }
-  .cta {
+/* Mobile responsiveness */
+@media (max-width: 820px) {
+  .nav {
+    position: absolute;
+    top: 70px;
+    right: 0;
     flex-direction: column;
-    gap: 10px;
+    background: white;
+    width: 220px;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transform: translateX(110%);
+    transition: transform 0.3s ease;
   }
+  .nav.open {
+    transform: translateX(0);
+  }
+  .nav-toggle {
+    display: block;
+  }
+  .cta { display: none; }
+}
+
+@media (max-width: 768px) {
+  .hero { grid-template-columns: 1fr !important; text-align: center; }
+  .hero-right { order: -1; }
 }
 
 @media (max-width: 480px) {
-  .container {
-    padding: 16px;
-  }
-  .hero-title {
-    font-size: 32px;
-  }
-  .hero-sub {
-    font-size: 15px;
-  }
-  .btn {
-    width: 100%;
-    text-align: center;
+  .container { padding: 16px; }
+  .hero-title { font-size: 32px; }
+  .hero-sub { font-size: 15px; }
+  .btn { width: 100%; text-align: center; }
+  .grid-3, .features {
+    grid-template-columns: 1fr;
   }
 }

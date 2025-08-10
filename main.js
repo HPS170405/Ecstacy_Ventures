@@ -10,12 +10,14 @@ document.addEventListener('DOMContentLoaded', function(){
       }
     });
   });
-  // mobile nav toggle if present
-  const toggle = document.getElementById('nav-toggle');
-  if(toggle){
-    toggle.addEventListener('click',()=>{
-      const nav = document.getElementById('nav');
-      nav.classList.toggle('open');
-    });
-  }
+
+  // Mobile nav toggle
+  const toggleBtn = document.createElement('button');
+  toggleBtn.innerHTML = "☰";
+  toggleBtn.className = "nav-toggle";
+  toggleBtn.id = "nav-toggle";
+  document.querySelector('.header').insertBefore(toggleBtn, document.querySelector('.cta'));
+
+  const nav = document.getElementById('nav');
+  toggleBtn.addEventListener('click', ()=> nav.classList.toggle('open'));
 });
