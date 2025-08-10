@@ -1,4 +1,3 @@
-// main.js - smooth scroll + mobile nav toggle (minimal)
 document.addEventListener('DOMContentLoaded', function(){
   // Smooth anchor scroll
   document.querySelectorAll('a[href^="#"]').forEach(a=>{
@@ -20,4 +19,13 @@ document.addEventListener('DOMContentLoaded', function(){
 
   const nav = document.getElementById('nav');
   toggleBtn.addEventListener('click', ()=> nav.classList.toggle('open'));
+
+  // Add Instagram + LinkedIn to mobile menu
+  const mobileLinks = document.createElement('div');
+  mobileLinks.style.marginTop = "12px";
+  mobileLinks.innerHTML = `
+    <a class="btn btn-primary" href="https://www.instagram.com/ecstasy_ventures_?igsh=OXhwaG8xdDJrcWhk" target="_blank">Instagram</a>
+    <a class="btn btn-primary" href="https://www.linkedin.com/company/ecstasy-ventures/" target="_blank">LinkedIn</a>
+  `;
+  nav.appendChild(mobileLinks);
 });
