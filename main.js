@@ -1,31 +1,34 @@
-document.addEventListener('DOMContentLoaded', function(){
-  // Smooth anchor scroll
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener('click', function(e){
-      const href = this.getAttribute('href');
-      if(href.length>1 && document.querySelector(href)){
-        e.preventDefault();
-        document.querySelector(href).scrollIntoView({behavior:'smooth', block:'start'});
-      }
+// main.js - mobile toggle + small resize handling to enforce correct social-link visibility
+document.addEventListener("DOMContentLoaded", () => {
+  const nav = document.getElementById("nav");
+  const navToggle = document.querySelector(".nav-toggle");
+  const socialLinks = nav ? nav.querySelector(".social-links") : null;
+  const cta = document.querySelector(".cta");
+
+  // Toggle menu open/close
+  if (navToggle && nav) {
+    navToggle.addEventListener("click", () => {
+      nav.classList.toggle("open");
+      const expanded = nav.classList.contains("open");
+      navToggle.setAttribute("aria-expanded", expanded ? "true" : "false");
     });
-  });
+  }
 
-  // Mobile nav toggle
-  const toggleBtn = document.createElement('button');
-  toggleBtn.innerHTML = "☰";
-  toggleBtn.className = "nav-toggle";
-  toggleBtn.id = "nav-toggle";
-  document.querySelector('.header').insertBefore(toggleBtn, document.querySelector('.cta'));
+  // Enforce social-links display state on resize (ensures consistent behaviour across browsers)
+  function handleResize() {
+    const isDesktop = window.innerWidth > 820;
 
-  const nav = document.getElementById('nav');
-  toggleBtn.addEventListener('click', ()=> nav.classList.toggle('open'));
+    // Remove mobile drawer if switching to desktop
+    if (nav && isDesktop) {
+      nav.classList.remove("open");
+      if (socialLinks) socialLinks.style.display = "none"; // explicitly hide on desktop
+      if (cta) cta.style.display = ""; // reset inline style so CSS controls it
+    } else {
+      if (socialLinks) socialLinks.style.display = ""; // remove inline override to let mobile CSS show it
+      if (cta && window.innerWidth <= 820) cta.style.display = "none";
+    }
+  }
 
-  // Add Instagram + LinkedIn to mobile menu
-  const mobileLinks = document.createElement('div');
-  mobileLinks.style.marginTop = "12px";
-  mobileLinks.innerHTML = `
-    <a class="btn btn-primary" href="https://www.instagram.com/ecstasy_ventures_?igsh=OXhwaG8xdDJrcWhk" target="_blank">Instagram</a>
-    <a class="btn btn-primary" href="https://www.linkedin.com/company/ecstasy-ventures/" target="_blank">LinkedIn</a>
-  `;
-  nav.appendChild(mobileLinks);
+  window.addEventListener("resize", handleResize);
+  handleResize();
 });
